@@ -7,7 +7,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 function LoginForm(props) {
-    const [mNumber, setMNumber] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [error,setError] = useState('')
@@ -59,7 +59,7 @@ function LoginForm(props) {
     }
   
     const handlemNumberChange = (e) => {
-      setMNumber(e.target.value);
+      setUsername(e.target.value);
     }
     //isResponseOk 이건 function인지 const로 써야하는지 헷갈림*********
     const isResponseOk = (response) => {
@@ -80,13 +80,13 @@ function LoginForm(props) {
           "X-CSRFToken": cookies.get("csrftoken"),
         },
         credentials: "same-origin",
-        body: JSON.stringify({mNumber: {mNumber}, password: {password}}),
+        body: JSON.stringify({username: {username}, password: {password}}),
       })
       .then(this.isResponseOk)
       .then((data) => {
         console.log(data);
         setIsAuthenticated(true)
-        setMNumber("")
+        setUsername("")
         setPassword("")
         setError("")
       })
@@ -126,9 +126,9 @@ function LoginForm(props) {
             return { ...prevState, email: e.target.value }
         })
     }
-    const mNumberChangeHandler = e => {
+    const usernameChangeHandler = e => {
         setAmdata( prevState => {
-            return { ...prevState, mNumber: e.target.value }
+            return { ...prevState, username: e.target.value }
         })
     }
     const passwordChangeHandler = e => {
@@ -166,7 +166,7 @@ function LoginForm(props) {
                                 type="text"
                                 className="form-control mt-1"
                                 placeholder="군번"
-                                onChange={e=>{setMNumber(e.target.value)}}
+                                onChange={e=>{setUsername(e.target.value)}}
                             />
                         </div>
                         <div className="form-group mt-3">
@@ -231,7 +231,7 @@ function LoginForm(props) {
                             type="text"
                             className="form-control mt-1"
                             placeholder="군번"
-                            onChange={mNumberChangeHandler}
+                            onChange={usernameChangeHandler}
                         />
                     </div>
                     <div className="form-group mt-3">
