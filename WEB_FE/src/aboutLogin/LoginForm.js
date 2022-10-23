@@ -8,7 +8,7 @@ function LoginForm(props) {
     const [authMode, setAuthMode] = useState('signin');
     const [users, setUsers] = useState([]);
     useEffect(()=>{
-        axios.get('https://web-communitree-moooohan-lighton-jg77q6wjjv4fxq-8000.githubpreview.dev/')
+        axios.get('https://web-communitree-moooohan-lighton-4x6xq9474cq9gv-8000.preview.app.github.dev/api/token')
         .then(res => setUsers(res.data))
         .catch(err => console.log(err));
     },[]);
